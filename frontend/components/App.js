@@ -1,5 +1,6 @@
 import React from 'react'
-
+import Helmet from 'react-helmet'
+import { Link } from 'react-router'
 
 export default class App extends React.Component {
   //$FlowIgnore
@@ -14,9 +15,21 @@ export default class App extends React.Component {
 
   render() {
     let { time } = this.state
+    let { children } = this.props
     return (
       <div onClick={this.handleClick.bind(this)}>
-        Hello World! The time is now {time.toString()}
+        <Helmet title="An App" />
+        <Helmet titleTemplate="%s | An App" />
+        <div>
+          Hello World! The time is now {time.toString()}
+        </div>
+        <div>
+          <ul>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+          </ul>
+          {children}
+        </div>
       </div>
     )
   }
