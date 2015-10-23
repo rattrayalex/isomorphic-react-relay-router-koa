@@ -2,3 +2,4 @@
 node_modules/
 frontend/public
 npm-debug.log
+dev.sqlite
