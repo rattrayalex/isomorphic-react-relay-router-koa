@@ -1,13 +1,13 @@
 /*eslint-env node */
-import path from 'path'
-import webpack from 'webpack'
+const path = require('path')
+const webpack = require('webpack')
 
 const env = process.env
 const version = env.npm_package_version
 const build_path = 'frontend/public'
 const base_url = 'http://localhost:8080'
 
-export default {
+module.exports = {
   entry: {
     app: path.resolve('frontend/client.js'),
   },
@@ -16,15 +16,16 @@ export default {
     filename: 'app.js',
     publicPath: `${base_url}/${version}/`,
   },
+  devtool: 'source-map-inline',
   module: {
     loaders: [
       {
         test: /\.js(x)?$/,
-        loaders: [
-          'react-hot',
-          `babel?stage=0`,
-        ],
         exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          sourceMaps: true,
+        }
       },
       {
         test: /\.css$/,

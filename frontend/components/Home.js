@@ -3,7 +3,6 @@ import Helmet from 'react-helmet'
 
 
 export default class Home extends React.Component {
-  //$FlowIgnore
   state = {
     time: new Date(),
   };

@@ -11,28 +11,23 @@ import ThingsRoute from '../relay-routes/ThingsRoute'
 //             <Application {...data} />
 //           )}
 
-
-export default (
-  (typeof window === 'undefined')
-  ? Base
-  : class Root extends React.Component {
-    render() {
-      console.log('IN ROOOOOOOT')
-      return (
-        <RootContainer
-          Component={Application}
-          route={new ThingsRoute()}
-          onReadyStateChange={({ error }) => {
-            if (error) console.error(error)
-          }}
-          renderLoading={() => (
-            <div>Relay Root Container is Loading...</div>
-          )}
-          renderFailure={(error) => (
-            <div>Error: {JSON.stringify(error)}</div>
-          )}
-        />
-      )
-    }
+export default class Root extends React.Component {
+  render() {
+    console.log('in Root with ', this.props)
+    return (
+      <RootContainer
+        Component={<Application {...this.props} />}
+        route={new ThingsRoute()}
+        onReadyStateChange={({ error }) => {
+          if (error) console.error(error)
+        }}
+        renderLoading={() => (
+          <div>Relay Root Container is Loading...</div>
+        )}
+        renderFailure={(error) => (
+          <div>Error: {JSON.stringify(error)}</div>
+        )}
+      />
+    )
   }
-)
+}
