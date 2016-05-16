@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import { Link } from 'react-router'
 
 import Login from './Login'
+import Things from './Things'
 
 
 export default class Base extends React.Component {
@@ -22,7 +23,7 @@ export default class Base extends React.Component {
       <div>
         <Helmet titleTemplate="%s | An App" />
 
-        <Login />
+        <Login viewer={viewer} />
 
         <ul>
           <li><Link to="/">Home</Link></li>
@@ -32,12 +33,7 @@ export default class Base extends React.Component {
 
         {children}
 
-        <h1>{viewer.username}</h1>
-        <ul>
-          {viewer.things.edges.map(({ node: { id, name } }) =>
-            <li key={id}><strong>{id}.</strong> {name}</li>
-          )}
-        </ul>
+        <Things things={viewer.things} />
 
       </div>
     )

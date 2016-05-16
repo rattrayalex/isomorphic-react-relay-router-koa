@@ -17,7 +17,7 @@ const htmlPage = ({ title, assets_path, body, data }) => (`
 <!DOCTYPE html>
 <html>
   <head>
-    <title>${title}</title>
+    ${title}
     <meta charSet='utf-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <script async src='${assets_path}/app.js'></script>
@@ -36,8 +36,7 @@ export function renderHtmlPage(children, data) {
   // because Helmet, the provider of the document.title,
   // must have a recently-rendered document to extract the title from.
   let body = ReactDomServer.renderToStaticMarkup(children)
-  let { title } = { title: 'hello world' }
-  // let { title } = Helmet.rewind()
+  let { title } = Helmet.rewind()
 
   return htmlPage({ body, title, assets_path, data })
 }

@@ -1,11 +1,14 @@
 import React from 'react'  //eslint-disable-line no-unused-vars
 import Helmet from 'react-helmet'
 
-export default ({ }) => (
+export default ({ viewer }) => (
   <div>
     <Helmet title='Login' />
 
-    <form method='post' action='/login'>
+    <span>
+      Your username: {viewer.username}
+    </span>
+    <form method='post' action='/login' >
       <input type='text'
         name='username'
         placeholder='Email'

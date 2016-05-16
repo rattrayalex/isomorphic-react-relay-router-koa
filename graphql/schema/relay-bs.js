@@ -9,7 +9,6 @@ import Thing from '../../storage/models/Thing'
 import UserType from './UserType'
 import User from '../../storage/models/User'
 
-export let dog = 'bark'
 
 /**
  * We get the node interface and field from the Relay library.
